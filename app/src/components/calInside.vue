@@ -2,8 +2,26 @@
     <div class="box">
       <el-container>
         <el-header style="height:8%;padding:0px">
-          <el-button type="primary" size="small">相机选择</el-button>
+          <el-button type="primary" size="small" @click="dialogFormVisible = true">相机选择</el-button>
           <el-button type="primary" size="small">参数设置</el-button>
+
+        <!-- 相机选择弹出框 -->
+        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
+          <el-form :model="form">
+            <el-form-item label="活动区域" :label-width="formLabelWidth">
+              <!-- v-model="form.region" -->
+              <el-select v-model="camera" placeholder="请选择相机">
+                <el-option label="相机一" value="shanghai"></el-option>
+                <el-option label="相机二" value="beijing"></el-option>
+              </el-select>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogFormVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+          </div>
+        </el-dialog>
+
         </el-header>
 
         <el-main style="background-color: #F5F5F5;height:60%;width:100%">
@@ -88,8 +106,20 @@ export default {
             number: 1,
             url: 'XXX.JPG',
           }],
-          logoimg:picture1
+          camera:"",
+          logoimg:picture1,
+          dialogFormVisible: false,
+          formLabelWidth: '15%'
         }
-}
+  },
+  methods: {
+      handleClose(done) {
+        this.$confirm('确认关闭？')
+          .then(_ => {
+            done();
+          })
+          .catch(_ => {});
+      }
+    }
 }
 </script>

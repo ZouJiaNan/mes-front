@@ -9,27 +9,25 @@
           </el-header>
           <el-main class="aside-body" style="padding:0;width:100%;height:95%">
             <!--导航栏-->
-            <el-menu class="aside-body-menu">
-              <el-submenu index="1" class="aside-body-menu-submeu">
-                <div slot="title" class="aside-body-menu-title">
+            <el-menu
+              class="el-menu-vertical-demo"
+              background-color="#001529"
+              text-color="#A5ACB3"
+              active-text-color="#fff"
+              router>
+              <el-submenu index="1">
+                <template slot="title">
                   <i class="el-icon-camera"></i>
                   <span>标定</span>
-                </div>
-
-                <el-menu-item-group>
-                <router-link to="/calInside" tag="p"><el-menu-item index="1-1">标定内参</el-menu-item></router-link>
-                <router-link to="/calOutside" tag="p"><el-menu-item index="1-2">标定外参</el-menu-item></router-link>
+                </template>
+                <el-menu-item-group style="background-color:#001529">
+                  <template slot="title"></template>
+                  <el-menu-item index="/calInside">标定内参</el-menu-item>
+                  <el-menu-item index="/calOutside">标定外参</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
-
-              <el-submenu index="2" class="aside-body-menu-submeu">
-                <div slot="title" class="aside-body-menu-title">
-                  <i class="el-icon-camera-solid"></i>
-                  <span>定位</span>
-                </div>
-              </el-submenu>
-
             </el-menu>
+
           </el-main>
         </el-aside>
 
@@ -60,7 +58,8 @@
     /* 侧边栏样式 */
     .aside{
       background-color: #001529;
-      text-align: center;
+      opacity:0.95;
+      /* text-align: center; */
     }
     .aside-header{
       color:#FFFFFF;
@@ -69,7 +68,9 @@
     }
     .el-menu{
       border-right:0!important;/* 去掉导航栏右边线 */
+      
     }
+
     .aside-body-menu-submeu{
       background-color: #001529;
     }
@@ -88,7 +89,7 @@
       background-color:#ECECEF;
       padding:1%;
     }
-
+    
     img{
         height:100%;
         width:100%;
@@ -96,11 +97,8 @@
 </style>
 <script>
 import logo from '../assets/logo.jpg';
-import calInside from '../components/calInside.vue';
-import calOutside from '../components/calOutside.vue';
 
 export default {
-    components:{calInside,calOutside},
     data(){
         return{
           logoimg:logo
