@@ -2,23 +2,50 @@
     <div class="box">
       <el-container>
         <el-header style="height:8%;padding:0px">
-          <el-button type="primary" size="small" @click="dialogFormVisible = true">相机选择</el-button>
-          <el-button type="primary" size="small">参数设置</el-button>
-
+          <el-button type="primary" size="small" @click="dialogCameraVisible = true">相机选择</el-button>
+          <el-button type="primary" size="small" @click="dialogParamVisible = true">参数设置</el-button>
+          <el-button type="primary" size="small" @click="dialogTakeVisible = true">内参拍照</el-button>
+          <span style="margin-left:60%">{{camera}}</span>
         <!-- 相机选择弹出框 -->
-        <el-dialog title="收货地址" :visible.sync="dialogFormVisible">
-          <el-form :model="form">
-            <el-form-item label="活动区域" :label-width="formLabelWidth">
-              <!-- v-model="form.region" -->
+        <el-dialog title="相机选择" :visible.sync="dialogCameraVisible">
+          <el-form>
+            <el-form-item label="相机选择" :label-width="formLabelWidth">
               <el-select v-model="camera" placeholder="请选择相机">
-                <el-option label="相机一" value="shanghai"></el-option>
-                <el-option label="相机二" value="beijing"></el-option>
+                <el-option v-for="item in cameraList" :key="item.name" :value="'当前相机:'+item.name+'--'+item.id" :label="item.name"></el-option>
               </el-select>
             </el-form-item>
           </el-form>
           <div slot="footer" class="dialog-footer">
-            <el-button @click="dialogFormVisible = false">取 消</el-button>
-            <el-button type="primary" @click="dialogFormVisible = false">确 定</el-button>
+            <el-button @click="dialogCameraVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogCameraVisible = false">确 定</el-button>
+          </div>
+        </el-dialog>
+
+        <!-- 参数设置弹出框 -->
+        <el-dialog title="参数设置" :visible.sync="dialogParamVisible">
+          <el-form>
+            <el-form-item label="角点列数" :label-width="formLabelWidth">
+              <el-input v-model="param1" autocomplete="off" style="width:40%"></el-input>
+            </el-form-item>
+            <el-form-item label="角点行数" :label-width="formLabelWidth">
+              <el-input v-model="param2" autocomplete="off" style="width:40%"></el-input>
+            </el-form-item>
+            <el-form-item label="实际角点间距" :label-width="formLabelWidth">
+              <el-input v-model="param3" autocomplete="off" style="width:40%"></el-input>
+            </el-form-item>
+          </el-form>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogParamVisible = false">取 消</el-button>
+            <el-button type="primary" @click="dialogParamVisible = false">确 定</el-button>
+          </div>
+        </el-dialog>
+
+        <!-- 内参拍照弹出框 -->
+        <el-dialog title="内参拍照" :visible.sync="dialogTakeVisible">
+          <img v-bind:src="logoimg" style="width:100%;height:100%;"/>
+          <div slot="footer" class="dialog-footer">
+            <el-button @click="dialogTakeVisible = false">退出</el-button>
+            <el-button type="primary" @click="dialogTakeVisible = false">拍照</el-button>
           </div>
         </el-dialog>
 
@@ -27,7 +54,7 @@
         <el-main style="background-color: #F5F5F5;height:60%;width:100%">
           <el-container>
             <el-aside class="main-body-window-aside" style="width:25%;height:100%;background-color: #FFFFFF;"> 
-              <el-table :data="tableData" style="margin-bottom:10px;height:90%" max-height="300">
+              <el-table :data="tableData" max-height="300">
                 <el-table-column prop="number" label="序号">
                 </el-table-column>
                 <el-table-column prop="url" label="图片">
@@ -36,8 +63,10 @@
                 <el-button type="text" size="small">删除</el-button>
                 </el-table-column>
               </el-table>
-                <el-button type="primary" size="small" style="margin-left:20%;">清空图片</el-button>
-                <el-button type="primary" size="small">开始标定</el-button>
+                <div style="margin-top:10%;padding-left:20%">
+                  <el-button type="primary" size="small">清空图片</el-button>
+                  <el-button type="primary" size="small">开始标定</el-button>
+                </div>
             </el-aside>
             
             <el-container style="margin-left:1%">
@@ -65,9 +94,6 @@
     .box{
         height:100%;
     }
-    /* .el-main{
-      box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
-    } */
     .main-body-window{
       background-color:#FFFFFF;
       height:90%;
@@ -107,9 +133,21 @@ export default {
             url: 'XXX.JPG',
           }],
           camera:"",
+          cameraList:[{
+            name:"camera1",
+            id:"001"
+            },{
+            name:"camera2",
+            id:"002"
+            }],
           logoimg:picture1,
-          dialogFormVisible: false,
-          formLabelWidth: '15%'
+          formLabelWidth:'120px',
+          dialogParamVisible: false,
+          dialogCameraVisible: false,
+          dialogTakeVisible: false,
+          param1:"",
+          param2:"",
+          param3:"",
         }
   },
   methods: {
