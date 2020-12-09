@@ -1,7 +1,7 @@
 <template>
     <div class="box">
       <el-container>
-        <el-header style="height:8%;padding:0px">
+        <el-header style="height:8%">
           <el-button type="primary" size="small" @click="dialogCameraVisible = true">相机选择</el-button>
           <el-button type="primary" size="small" @click="dialogParamVisible = true">参数设置</el-button>
           <el-button type="primary" size="small" @click="dialogTakeVisible = true">内参拍照</el-button>
@@ -54,13 +54,13 @@
         <el-main style="background-color: #F5F5F5;height:60%;width:100%">
           <el-container>
             <el-aside class="main-body-window-aside" style="width:25%;height:100%;background-color: #FFFFFF;"> 
-              <el-table :data="tableData" max-height="300">
+              <el-table :data="tableData" max-height="300" :row-style="{height:'40px'}" :cell-style="{padding:'0px'}">
                 <el-table-column prop="number" label="序号">
                 </el-table-column>
                 <el-table-column prop="url" label="图片">
                 </el-table-column>
                 <el-table-column  label="操作">
-                <el-button type="text" size="small">删除</el-button>
+                  <el-button size="mini" type="danger">删除</el-button>
                 </el-table-column>
               </el-table>
                 <div style="margin-top:10%;padding-left:20%">
@@ -120,6 +120,15 @@ export default {
   data() {
         return {
           tableData: [{
+            number: 1,
+            url: 'XXX.JPG',
+          }, {
+            number: 1,
+            url: 'XXX.JPG',
+          }, {
+            number: 1,
+            url: 'XXX.JPG',
+          }, {
             number: 1,
             url: 'XXX.JPG',
           }, {
