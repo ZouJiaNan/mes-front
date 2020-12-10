@@ -26,6 +26,16 @@
                   <el-menu-item index="/calOutside">标定外参</el-menu-item>
                 </el-menu-item-group>
               </el-submenu>
+              <el-submenu index="2">
+                <template slot="title">
+                  <i class="el-icon-s-promotion"></i>
+                  <span>定位</span>
+                </template>
+                <el-menu-item-group style="background-color:#001529">
+                  <template slot="title"></template>
+                  <el-menu-item index="/position">定位结果</el-menu-item>
+                </el-menu-item-group>
+              </el-submenu>
             </el-menu>
 
           </el-main>

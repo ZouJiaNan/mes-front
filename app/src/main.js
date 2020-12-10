@@ -11,12 +11,13 @@ Vue.config.productionTip = false
 
 // import calInside from './components/calInside.vue';
 import calOutside from './components/calOutside.vue';
-import calInside from './components/test.vue';
-
+import calInside from './components/calInside.vue';
+import position from './components/position.vue';
 var routerObj=new VueRouter({
   routes:[
     {path:'/calInside',component:calInside},
-    {path:'/calOutside',component:calOutside}
+    {path:'/calOutside',component:calOutside},
+    {path:'/position',component:position}
   ]
 });
 new Vue({
