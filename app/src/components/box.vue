@@ -2,7 +2,7 @@
     <div id="boxapp" class="box">
     <el-container>
         <!--侧边栏-->
-        <el-aside class="aside" style="width: 15%;height:100%">
+        <el-aside class="aside" style="width: 15%;height:100%;overflow:hidden;">
           <el-header class="aside-header" style="width:100%" height=5%> 
             <!-- <img v-bind:src="logoimg"/> -->
             XXX智能视觉系统
@@ -100,10 +100,6 @@
       padding:1%;
     }
     
-    img{
-        height:100%;
-        width:100%;
-    }
 </style>
 <script>
 import logo from '../assets/logo.jpg';

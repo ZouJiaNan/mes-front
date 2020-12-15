@@ -5,6 +5,7 @@
             <el-button type="primary" size="small" @click="dialogCameraVisible = true">相机选择</el-button>
             <el-button type="primary" size="small" @click="dialogParamVisible = true">参数设置</el-button>
             <el-button type="primary" size="small" @click="dialogTakeVisible = true">内参拍照</el-button>
+            <el-button type="primary" size="small" @click="getImg">内参拍照</el-button>
             <span style="margin-left:60%">{{camera}}</span>
             <!-- 相机选择弹出框 -->
             <el-dialog title="相机选择" :visible.sync="dialogCameraVisible">
@@ -66,10 +67,11 @@
                     <el-button type="primary" size="small">开始标定</el-button>
                     </div>
                 </el-aside>
-                <el-container style="width: 70%;height:100%;margin-left:20px;background-color:#ECECEF;">
+                <el-container style="width:70%;height:100%;margin-left:20px;background-color:#ECECEF;">
                     <el-header style="height:5%;background-color:#FFFFFF;font-weight:600;padding:0.5%;">图片展示</el-header>
-                    <el-main style="background-color:#F44444;padding:0px;overflow: hidden;">
-                        <img v-bind:src="logoimg" style="width:100%;height:100%;"/>
+                    <el-main style="background-color:#FFFFFF;padding:0px;overflow:hidden;">
+                          <!--v-bind:height="ImageHeight"-->
+                          <img v-bind:src="logoimg" v-bind:height="image_height" v-bind:width="image_width" />
                     </el-main>
                     <el-footer style="height:30%;margin-top:20px;background-color:#FFFFFF;padding:0px;">
                         <el-header style="background-color:#F5F5F5; height:20%;font-weight:600;padding:0.5%">日志展示</el-header>
@@ -143,6 +145,9 @@ export default {
           param1:"",
           param2:"",
           param3:"",
+          image_height:"100%",
+          image_width:"100%",
+          width_height_scale:""
         }
   },
   methods: {
@@ -152,7 +157,17 @@ export default {
             done();
           })
           .catch(_ => {});
-      }
+      },
+    },
+    //钩子函数，图片自适应
+    mounted: function() {
+      var img_url  =this.logoimg;
+        var img = new Image();
+        img.src=img_url;
+        var height=Math.ceil(img.height);
+        var width=Math.ceil(img.width);
+        this.width_height_scale=width/height;
+        this.image_width=this.image_width*this.width_height_scale;
     }
 }
 </script>

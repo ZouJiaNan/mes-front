@@ -15,10 +15,9 @@
                                 <el-table :data="tableData" max-height="900" :row-style="{height:'40px'}" :cell-style="{padding:'0px'}">
                                     <el-table-column prop="number" label="序号">
                                     </el-table-column>
-                                    <el-table-column prop="url" label="图片">
+                                    <el-table-column prop="device_name" label="设备名">
                                     </el-table-column>
-                                    <el-table-column  label="操作">
-                                        <el-button size="mini" type="text">删除</el-button>
+                                    <el-table-column  prop="statue" label="状态">
                                     </el-table-column>
                                 </el-table>
                             </el-header>
@@ -26,7 +25,7 @@
                                 <el-container>
                                     <el-aside width="50%">
                                         <el-container>
-                                            <el-header style="background-color:#ECECEF;height:15%;padding:0.5%;font-weight:600;">模型信息</el-header>
+                                            <el-header style="background-color:#ECECEF;height:15%;padding:0.5%;">模型信息</el-header>
                                             <el-main style="background-color:#FFFFFF;font-size:10px;">
                                                 <p>模型:XXXXXXX</p>
                                                 <p>运行状态:XXXXXXX</p>
@@ -35,7 +34,7 @@
                                     </el-aside>
                                     <el-main style="padding:0px;margin-left:1%">
                                         <el-container>
-                                            <el-header style="background-color:#ECECEF;height:15%;padding:0.5%;font-weight:600;">实时统计</el-header>
+                                            <el-header style="background-color:#ECECEF;height:15%;padding:0.5%;">实时统计</el-header>
                                             <el-main style="background-color:#FFFFFF;font-size:10px;">
                                                 <p>拍照数:XXXXXXX</p>
                                                 <p>定位完成数:XXXXXXX</p>
@@ -130,16 +129,20 @@ export default {
         return {
           tableData: [{
             number: 1,
-            url: 'XXX.JPG',
+            device_name: "相机一",
+            statue:"运行中"
           }, {
             number: 1,
-            url: 'XXX.JPG',
+            device_name: "相机一",
+            statue:"运行中"
+          },{
+            number: 1,
+            device_name: "相机一",
+            statue:"运行中"
           }, {
             number: 1,
-            url: 'XXX.JPG',
-          }, {
-            number: 1,
-            url: 'XXX.JPG',
+            device_name: "相机一",
+            statue:"运行中"
           }],
           camera:"",
           cameraList:[{

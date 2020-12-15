@@ -9,7 +9,6 @@ Vue.use(ElementUi)
 Vue.use(VueRouter)
 Vue.config.productionTip = false
 
-// import calInside from './components/calInside.vue';
 import calOutside from './components/calOutside.vue';
 import calInside from './components/calInside.vue';
 import position from './components/position.vue';
